@@ -30,7 +30,7 @@ const AllGroups = () => {
   return (
     <div className="grid grid-cols-4 gap-4 p-4">
       {data.map((group, index) => (
-        <Link to="/chat" key={group.id} className="flex flex-col items-center justify-center ">
+        <Link to={`/chat/${group.name}`} key={group.id} className="flex flex-col items-center justify-center ">
           <div
             key={index}
             className="w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center text-white text-xl relative"

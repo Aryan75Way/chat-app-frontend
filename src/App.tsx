@@ -12,7 +12,7 @@ function App() {
     <Routes>
       <Route element={<RootLayout />}>
         <Route path="/" element={<Home />} />
-        <Route path="/chat" element={<Chat/>} />
+        <Route path="/chat/:groupname" element={<Chat/>} />
         <Route path="/profile" element={<Profile />} />
       </Route>
       <Route element={<AuthLayout />}>
