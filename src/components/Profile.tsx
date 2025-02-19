@@ -1,10 +1,7 @@
 const Profile = () => {
   return (
     <div
-      style={{
-        height: "100%",
-        backgroundColor: "#f4f6f8",
-      }}
+      className="text-2xl font-bold underline"
     >
       Profile
     </div>

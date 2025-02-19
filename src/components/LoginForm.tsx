@@ -80,6 +80,7 @@ export default function LoginForm() {
   return (
     <Box
       height="100vh"
+      
       width="100vw"
       display="flex"
       justifyContent="center"

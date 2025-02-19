@@ -1,7 +1,7 @@
 import { Outlet, useNavigate } from "react-router-dom";
 import { useAppSelector } from "../store/store";
-import { Box } from "@mui/material";
 import { useEffect } from "react";
+import TopBar from "@/components/TopBar";
 
 export default function RootLayout() {
   const { isAuthenticated } = useAppSelector((state) => state.auth);
@@ -15,24 +15,12 @@ export default function RootLayout() {
 
   if (isAuthenticated)
     return (
-  <div 
-  style={{
-      display:"flex",
-      justifyContent:"center",
-      alignItems:"center",
-      height:"100vh",
-      width:"100vw",
-      
-    }}
-  > 
-      <Box
-        height="80vh"
-        width="50vw"
-        position="relative"
-        borderRadius="5px"
-      >
-        <Outlet />
-      </Box>
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="h-96 w-72 max-sm:h-screen max-sm:w-full border rounded flex flex-col justify-between">
+          <TopBar />
+          <Outlet />
+          
+        </div>
       </div>
     );
 }

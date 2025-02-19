@@ -10,7 +10,7 @@ export const api = createApi({
     baseUrl: baseUrl,
     prepareHeaders: (headers, { getState }) => {
       // Access the state from Redux
-      const token = (getState() as RootState).auth.accessToken;
+      const token = (getState() as RootState).auth.accessToken;      
 
       if (token) {
         headers.set('Authorization', `Bearer ${token}`);
@@ -20,7 +20,7 @@ export const api = createApi({
     },
   }),
   endpoints: (builder) => ({
-    me: builder.query<ApiResponse<User>, void>({
+    me: builder.query<ApiResponse<Omit<User, 'password'>>, void>({
       query: () => `users/me`,
     }),
     login: builder.mutation<ApiResponse<Omit<User, 'password'> & Tokens>, { email: string, password: string }>({
@@ -37,8 +37,13 @@ export const api = createApi({
       query: (body) => {
         return { url: `users/${body.id}`, method: 'PUT', body }
       },
-    })
+    }),
+    createGroup: builder.mutation<ApiResponse<Group>, { name: string, adminId: string, isPrivate: boolean }>({
+      query: (body) => {
+        return { url: `groups/create`, method: 'POST', body }
+      },
+    }),
   }),
 });
 
-export const { useMeQuery, useLoginMutation, useRegisterMutation, useUpdateUserMutation } = api;
+export const { useMeQuery, useLoginMutation, useRegisterMutation, useUpdateUserMutation, useCreateGroupMutation } = api;

@@ -56,11 +56,12 @@ export const authSlice = createSlice({
       })
       .addMatcher(api.endpoints.login.matchFulfilled, (state, action) => {
         const data = action.payload.data;
-        console.log("[LOGIN] Data: ", data);
         // @ts-ignore
         localStorage.setItem("access_token", data.tokens.accessToken);
         // @ts-ignore
         localStorage.setItem("refresh_token", data.tokens.refreshToken);
+        // @ts-ignore
+        localStorage.setItem("user_id", data.user.id)
         state.accessToken = data.accessToken;
         state.refreshToken = data.refreshToken;
         state.isAuthenticated = true;
@@ -73,7 +74,12 @@ export const authSlice = createSlice({
         state.isAuthenticated = false;
         state.loading = false;
         return state;
-      });
+      })
+      .addMatcher(api.endpoints.me.matchFulfilled, 
+        (state) => {
+          return state;
+        }
+      )
   },
 });
 

@@ -17,6 +17,14 @@ interface Tokens {
   refreshToken: string;
 }
 
+interface Group {
+  id: string;
+  name: string;
+  adminId: string;
+  isPrivate: boolean;
+  createdAt: string;
+}
+
 interface ApiResponse<T> {
   data: T;
   message: string;
